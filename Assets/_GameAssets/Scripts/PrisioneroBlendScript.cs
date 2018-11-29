@@ -12,30 +12,23 @@ public class PrisioneroBlendScript : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            print("ANDANDO");
-            // ANDA
-            miAnimator.SetFloat("corriendo", 0.11f);
-        }
-        else if (!Input.GetKey(KeyCode.UpArrow)) {
+        if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftShift)) {
             print("PARANDO");
             // SE PARA. Se suelta la tecla UpArrow. Esta andando o corriendo
             corriendo -= 0.01f;
-            corriendo = Mathf.Max(0f, corriendo);
+            corriendo = Mathf.Max(0.11f, corriendo);
             miAnimator.SetFloat("corriendo", corriendo);
-        }
-        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift)) {
+        } else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftShift)) {
             print("CORRIENDO");
             // A CORRER
             corriendo += 0.01f;
             corriendo = Mathf.Min(1, corriendo);
             miAnimator.SetFloat("corriendo", corriendo);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKeyUp(KeyCode.LeftShift)) {
+        } else if (!Input.GetKey(KeyCode.UpArrow)) {
             print("DEJANDO DE CORRER");
             // DEJA DE CORRER
             corriendo -= 0.01f;
-            corriendo = Mathf.Max(0.11f, corriendo);
+            corriendo = Mathf.Max(0f, corriendo);
             miAnimator.SetFloat("corriendo", corriendo);
         }
         // Para girar la camara
