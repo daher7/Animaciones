@@ -11,7 +11,10 @@ public class PrisioneroScript : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.W)) {
+        float y = Input.GetAxis("Vertical");
+        miAnimator.SetFloat("corriendo", y);
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
             miAnimator.SetBool("estaAndando", true);
         } else if (Input.GetKeyDown(KeyCode.S)) {
             miAnimator.SetBool("estaAndando", false);
@@ -19,5 +22,10 @@ public class PrisioneroScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P)) {
             miAnimator.SetTrigger("punch");
         }
+
 	}
+
+    public void ReproducirSonidoPisada() {
+        print("ESTOY ANDANDO");
+    }
 }
